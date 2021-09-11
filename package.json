@@ -1,0 +1,23 @@
+{
+  "name": "ssgnode",
+  "version": "0.0.1",
+  "description": "Static Site Generator in Node js",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sirinoks/SSGNode.git"
+  },
+  "keywords": [
+    "ssg",
+    "nodejs"
+  ],
+  "author": "Sirinoks",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sirinoks/SSGNode/issues"
+  },
+  "homepage": "https://github.com/sirinoks/SSGNode#readme"
+}
