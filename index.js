@@ -1,11 +1,15 @@
 const fs = require ('fs')
-const path = "/Sherlock Holmes Selected Stories/test.txt"
+const path = "./Sherlock Holmes Selected Stories/The Adventure of the Six Napoleans.txt"
 
-fs.readdirSync(path);
+const fullText = String(fs.readFileSync(path, 'utf8'));
+
+let element = "p";
 
 const html = fullText
-  .split(/\r?\n\r?\n/)
-  .map(para =>
-    `<p>${para.replace(/\r?\n/, ' ')}</p>`
+  .split(/\n\n/)
+  .map(paragraph =>
+    `<${element}>${paragraph.replace(/\r?\n/, ' ')}</${element}>`
   )
   .join(' ');
+
+  console.log(html);

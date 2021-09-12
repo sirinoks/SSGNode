@@ -3,9 +3,6 @@
   "version": "0.0.1",
   "description": "Static Site Generator in Node js",
   "main": "index.js",
-  "scripts": {
-    "test": "test"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sirinoks/SSGNode.git"
@@ -19,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/sirinoks/SSGNode/issues"
   },
-  "homepage": "https://github.com/sirinoks/SSGNode#readme"
+  "homepage": "https://github.com/sirinoks/SSGNode#readme",
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "utils": "^0.3.1"
+  }
 }
