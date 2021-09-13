@@ -1,5 +1,5 @@
 const fs = require ('fs')
-const path = "./Sherlock Holmes Selected Stories/The Adventure of the Six Napoleans.txt"
+let path = "./Sherlock Holmes Selected Stories/The Adventure of the Six Napoleans.txt"
 //read the file
 const fullText = String(fs.readFileSync(path, 'utf8'));
 
@@ -19,7 +19,7 @@ paragraphs.forEach((paragraph) => {
 const html = htmlParagraphsArray.join('\n');
 
 //output
-console.log(html);
+//console.log(html);
 
 //change consts based on context. Can I take version number from package.json?
 const name = "ssgnode";
@@ -27,7 +27,14 @@ const version = 0.1;
 const defaultFolder = "Sherlock Holmes Selected Stories";
 
 //check if the argument corresponds with anything we can use
+let pathchanged = false;
 process.argv.forEach(function (val, index, array) {
+  //if path isn't the default one, change it for this next value
+  if(pathchanged){
+    console.log(`Path is now ${val}`);
+    path = val;
+  }
+
   switch(val) {
     case "--version":
     case "-v":
@@ -50,6 +57,10 @@ process.argv.forEach(function (val, index, array) {
     case "-hi":
       console.log("Hi, nice person. Hope you have a nice time of the day. If not, maybe this will help ( ._.)_ <3");
       break;
+    case "--input":
+    case "-i":      
+      pathchanged=true;
+      break;
   }
-
+  
 });
