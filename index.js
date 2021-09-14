@@ -30,11 +30,11 @@ function readFile(file) {
 
 //to remove all previous files
 function deleteFiles (folder) {
-  fs.readdir(folder, (err, files) => {
+  fs.readdirSync(folder, (err, files) => {
     if (err) throw err;
   
     for (const file of files) {
-      fs.unlink(path.join(folder, file), err => {
+      fs.unlinkSync(path.join(folder, file), err => {
         if (err) throw err;
       });
     }
@@ -42,7 +42,7 @@ function deleteFiles (folder) {
 }
 
 function generateFile(html) {
-  fs.writeFile(`${endPath}/output.html`, html, function(err) {
+  fs.writeFileSync(`${endPath}/output.html`, html, function(err) {
     if(err) {
         return console.log(err);
     }
@@ -96,7 +96,7 @@ process.argv.forEach(function (val, index, array) {
   }
 });
 
-function readFiles() {
+function finalize() {
   let texts = "";
   let html = "";
   if(fs.lstatSync(sourcePath).isDirectory()) {
@@ -105,7 +105,7 @@ function readFiles() {
       if (err) {
         throw err;
       }
-      files.forEach(file=>{
+      files.forEach(function(file){
         console.log(file);
         //* Repeated code
         texts=readFile(`${sourcePath}/${file}`)
@@ -122,6 +122,7 @@ function readFiles() {
     output(html);
     
   }
+  console.log("Website generated");
 }
 
 function output(html) {
@@ -132,6 +133,13 @@ function output(html) {
   
     deleteFiles(endPath);
     generateFile(html);
+    genCss(endPath);
+}
+
+function genCss(dir) {
+  fs.copyFileSync("styles.css", `${dir}/styles.css`, (err)=>{
+    if (err) throw err;
+  })
 }
 
 function genPage(texts) {
@@ -139,11 +147,17 @@ function genPage(texts) {
   <!DOCTYPE html>
   <html>
   <head>
-  <title>Title of the document</title>
+  <style>
+  @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
+  </style>
+  <link rel="stylesheet" href="./styles.css">
+  <title>Generated files</title>
   </head>
 
   <body>
+  <div class="container">
   ${texts}
+  </div>
   </body>
 
   </html>
@@ -151,6 +165,6 @@ function genPage(texts) {
   return html;
 }
 
-readFiles();
+finalize();
 
 
