@@ -16,15 +16,21 @@ function readFile(file) {
   //divide text into paragraphs
   const paragraphs = fullText.split(/\n\n/);
 
-  //put them all into an array
+  let title = paragraphs[0];
   let htmlParagraphsArray = [];
-  paragraphs.forEach((paragraph) => {
-    htmlParagraphsArray.push(`<${element}>${paragraph}</${element}>`);
-  });
+
+  //put them all into an array
+  for (let i=0;i<paragraphs.length;i++){
+    if (i==0)//only the first paragraph is the title
+      htmlParagraphsArray.push(`<h1>${title}</h1>`);
+    else {
+      htmlParagraphsArray.push(`<${element}>${paragraphs[i]}</${element}>`);
+    }
+  }
 
   //put them all into a single string, every paragraph starts from a new line
   texts = htmlParagraphsArray.join('\n');
-  return texts;
+  return {"texts": texts, "title": title};
 }
 
 
@@ -98,6 +104,7 @@ process.argv.forEach(function (val, index, array) {
 
 function finalize() {
   let texts = "";
+  let title = "";
   let html = "";
   if(fs.lstatSync(sourcePath).isDirectory()) {
 
@@ -108,17 +115,17 @@ function finalize() {
       files.forEach(function(file){
         console.log(file);
         //* Repeated code
-        texts=readFile(`${sourcePath}/${file}`)
-        html = genPage(texts);
+        
+        let contentArray = readFile(`${sourcePath}/${file}`)
+        html = genPage(contentArray["texts"], contentArray["title"]);
         output(html);
-
       })
     })
 
   } else {
     //* Repeated code
-    texts=readFile(sourcePath);
-    html = genPage(texts);
+    let contentArray = readFile(sourcePath);
+    html = genPage(contentArray["texts"], contentArray["title"]);
     output(html);
     
   }
@@ -142,7 +149,8 @@ function genCss(dir) {
   })
 }
 
-function genPage(texts) {
+function genPage(texts, title) {
+  console.log(title);
   const html = `
   <!DOCTYPE html>
   <html>
@@ -151,7 +159,7 @@ function genPage(texts) {
   @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
   </style>
   <link rel="stylesheet" href="./styles.css">
-  <title>Generated files</title>
+  <title>${title}</title>
   </head>
 
   <body>
@@ -162,6 +170,7 @@ function genPage(texts) {
 
   </html>
   `;
+  console.log(html);
   return html;
 }
 

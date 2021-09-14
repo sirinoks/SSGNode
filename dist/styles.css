@@ -22,3 +22,9 @@ body {
 p {
     margin: 1%;
 }
+
+h1 {
+    margin: auto;
+    padding: 1%;
+    color:rgba(150, 210, 220)
+}
