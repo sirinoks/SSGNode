@@ -1,15 +1,10 @@
 
-  <!DOCTYPE html>
-  <html>
-  <head>
   <style>
   @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
   </style>
   <link rel="stylesheet" href="./styles.css">
   <title>THE ADVENTURE OF THE SIX NAPOLEONS</title>
-  </head>
 
-  <body>
   <div class="container">
   <h1>THE ADVENTURE OF THE SIX NAPOLEONS</h1>
 <p>
@@ -798,7 +793,4 @@ forgery case. Good-bye, Lestrade. If any little problem comes
 your way, I shall be happy, if I can, to give you a hint or two
 as to its solution.”</p>
   </div>
-  </body>
-
-  </html>
   
