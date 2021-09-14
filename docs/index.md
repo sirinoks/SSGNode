@@ -1,9 +1,11 @@
 
+
   <style>
   @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
   </style>
   <link rel="stylesheet" href="./styles.css">
   <title>THE ADVENTURE OF THE SIX NAPOLEONS</title>
+    <h1>PLEASE BE AWARE MY CSS IS GETTING FUCKED BY GITHUB PAGES A LITTLE</h1>
 
   <div class="container">
   <h1>THE ADVENTURE OF THE SIX NAPOLEONS</h1>
