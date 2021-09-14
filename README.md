@@ -2,7 +2,6 @@
 **S**tatic\
 **S**ite\
 **G**enerator
-
 ---
 
 This tool allows you to generate web pages from text files.\
@@ -23,9 +22,9 @@ If you ever get an error of a missing node module, you can always look at its na
 \
 Run in your console
 > node index.js
----
 
-###Arguments
+***
+##Arguments
 You can specify additional options through arguments like so:
 > node index.js -argument --argument input
 \
