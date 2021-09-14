@@ -10,7 +10,7 @@ You can also change the *styles.css* to fit your preferences, it will get copied
 It also recognizes the first paragraph as a title.
 ---
 
-##How to use\
+## How to use
 You should have a *.txt* file or a folder of such files, or instead "Sherlock Holmes Selected Stories" folder with txt contents present for testing this tool.\
 \
 Make sure to have [node.js](https://nodejs.org/en/download/) installed on your system.\
@@ -24,7 +24,7 @@ Run in your console
 > node index.js
 
 ***
-##Arguments
+### Arguments
 You can specify additional options through arguments like so:
 > node index.js -argument --argument input
 \
