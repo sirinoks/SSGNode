@@ -4,9 +4,19 @@
 **G**enerator
 
 This tool allows you to generate web pages from text files.
+You can specify a file/folder to generate into valid html pages. They will appear in *./dist*. 
+You can also change the *styles.css* to fit your preferences, it will get copied over to *./dist* and will be applied to all webpages there.
+It also recognizes the first paragraph as a title.
 
 ##How to use
-You should have a "Sherlock Holmes Selected Stories" folder with txt contents present for testing this tool.
+You should have a *.txt* file or a folder of such files, or instead "Sherlock Holmes Selected Stories" folder with txt contents present for testing this tool.
+
+Make sure to have [node.js](https://nodejs.org/en/download/) installed on your system.
+Then, in the repository run
+> npm init
+
+If you ever get an error of a missing node module, you can always look at its name (it will have a message *Error: Cannot find module 'module'*) and run
+> npm install **module**
 
 Run in your console
 > node index.js
