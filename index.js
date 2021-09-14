@@ -1,3 +1,5 @@
+//I know there are a bunch of things that can be improved on, but I don't know how exactly. I will mark those with a *
+
 const fs = require ('fs')
 const path = require('path')
 
@@ -47,10 +49,6 @@ function generateFile(html) {
     console.log("web page generated");
   }); 
 }
-
-
-
-
 
 //change consts based on context. Can I take version number from package.json?
 const name = "ssgnode";
@@ -109,7 +107,7 @@ function readFiles() {
       }
       files.forEach(file=>{
         console.log(file);
-
+        //* Repeated code
         texts=readFile(`${sourcePath}/${file}`)
         html = genPage(texts);
         output(html);
@@ -118,6 +116,7 @@ function readFiles() {
     })
 
   } else {
+    //* Repeated code
     texts=readFile(sourcePath);
     html = genPage(texts);
     output(html);
@@ -152,8 +151,6 @@ function genPage(texts) {
   return html;
 }
 
-
-//output
-//console.log(texts);
-
 readFiles();
+
+
