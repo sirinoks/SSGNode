@@ -1,25 +1,56 @@
 const fs = require ('fs')
-let path = "./Sherlock Holmes Selected Stories/The Adventure of the Six Napoleans.txt"
-//read the file
-const fullText = String(fs.readFileSync(path, 'utf8'));
+const path = require('path')
 
-//future functionality of choosing the element you want to use
-let element = "p";
+let sourcePath = "./Sherlock Holmes Selected Stories/The Adventure of the Six Napoleans.txt"
+let endPath = "./dist"
 
-//divide text into paragraphs
-const paragraphs = fullText.split(/\n\n/);
-//put them all into an array
-let htmlParagraphsArray = [];
+function readFile(file) {
+  //read the file
+  const fullText = String(fs.readFileSync(file, 'utf8'));
 
-paragraphs.forEach((paragraph) => {
-  htmlParagraphsArray.push(`<${element}>${paragraph}</${element}>`);
-});
+  //future functionality of choosing the element you want to use
+  let element = "p";
 
-//put them all into a single string, every paragraph starts from a new line
-const html = htmlParagraphsArray.join('\n');
+  //divide text into paragraphs
+  const paragraphs = fullText.split(/\n\n/);
 
-//output
-//console.log(html);
+  //put them all into an array
+  let htmlParagraphsArray = [];
+  paragraphs.forEach((paragraph) => {
+    htmlParagraphsArray.push(`<${element}>${paragraph}</${element}>`);
+  });
+
+  //put them all into a single string, every paragraph starts from a new line
+  texts = htmlParagraphsArray.join('\n');
+  return texts;
+}
+
+
+//to remove all previous files
+function deleteFiles (folder) {
+  fs.readdir(folder, (err, files) => {
+    if (err) throw err;
+  
+    for (const file of files) {
+      fs.unlink(path.join(folder, file), err => {
+        if (err) throw err;
+      });
+    }
+  });
+}
+
+function generateFile(html) {
+  fs.writeFile(`${endPath}/output.html`, html, function(err) {
+    if(err) {
+        return console.log(err);
+    }
+    console.log("web page generated");
+  }); 
+}
+
+
+
+
 
 //change consts based on context. Can I take version number from package.json?
 const name = "ssgnode";
@@ -31,8 +62,11 @@ let pathchanged = false;
 process.argv.forEach(function (val, index, array) {
   //if path isn't the default one, change it for this next value
   if(pathchanged){
-    console.log(`Path is now ${val}`);
-    path = val;
+    if(!val.match("^-")) {
+      //means this might be the directory
+      sourcePath = val;
+      console.log(`Path is now ${val}`);
+    }
   }
 
   switch(val) {
@@ -62,5 +96,64 @@ process.argv.forEach(function (val, index, array) {
       pathchanged=true;
       break;
   }
-  
 });
+
+function readFiles() {
+  let texts = "";
+  let html = "";
+  if(fs.lstatSync(sourcePath).isDirectory()) {
+
+    fs.readdir(sourcePath, (err, files)=> {
+      if (err) {
+        throw err;
+      }
+      files.forEach(file=>{
+        console.log(file);
+
+        texts=readFile(`${sourcePath}/${file}`)
+        html = genPage(texts);
+        output(html);
+
+      })
+    })
+
+  } else {
+    texts=readFile(sourcePath);
+    html = genPage(texts);
+    output(html);
+    
+  }
+}
+
+function output(html) {
+    //if folder doesn't exist, create it
+    if (!fs.existsSync(endPath)) {
+      fs.mkdirSync(endPath);
+    }
+  
+    deleteFiles(endPath);
+    generateFile(html);
+}
+
+function genPage(texts) {
+  const html = `
+  <!DOCTYPE html>
+  <html>
+  <head>
+  <title>Title of the document</title>
+  </head>
+
+  <body>
+  ${texts}
+  </body>
+
+  </html>
+  `;
+  return html;
+}
+
+
+//output
+//console.log(texts);
+
+readFiles();
