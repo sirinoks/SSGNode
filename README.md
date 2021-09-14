@@ -1,12 +1,12 @@
 # SSGNode  
 **S**tatic\
 **S**ite\
-**G**enerator\
+**G**enerator
 ---
 This tool allows you to generate web pages from text files.\
 You can specify a file/folder to generate into valid html pages. They will appear in *./dist*.\
 You can also change the *styles.css* to fit your preferences, it will get copied over to *./dist* and will be applied to all webpages there.\
-It also recognizes the first paragraph as a title.\
+It also recognizes the first paragraph as a title.
 ---
 ##How to use\
 You should have a *.txt* file or a folder of such files, or instead "Sherlock Holmes Selected Stories" folder with txt contents present for testing this tool.\
