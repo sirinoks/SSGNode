@@ -1,4 +1,5 @@
 # SSGNode  
+[Watch it work](https://sirinoks.github.io/SSGNode/)  
 **S**tatic\
 **S**ite\
 **G**enerator\
