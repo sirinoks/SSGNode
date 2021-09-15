@@ -2,7 +2,6 @@
 
 const fs = require ('fs')
 const path = require('path')
-const saf = require('gff');
 
 let sourcePath = "./Sherlock Holmes Selected Stories/The Adventure of the Six Napoleans.txt"
 let endPath = "./dist"
