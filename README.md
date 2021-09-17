@@ -17,7 +17,7 @@ You should have a `.txt` file or a folder of such files, or instead "Sherlock Ho
 Make sure to have [node.js](https://nodejs.org/en/download/) installed on your system.\
 Then, in the repository run
 
-> npm init
+> npm install
 
 \
 If you ever get an error of a missing node module, you can always look at its name (it will have a message *Error: Cannot find module `module`*) and run
