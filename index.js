@@ -14,7 +14,7 @@ function readFile(file) {
   let element = "p";
 
   //divide text into paragraphs
-  const paragraphs = fullText.split(/\n\n/);
+  const paragraphs = fullText.split(/\r?\n\r?\n/);
 
   let title = paragraphs[0];
   let htmlParagraphsArray = [];
