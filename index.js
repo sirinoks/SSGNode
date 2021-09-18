@@ -116,8 +116,9 @@ function finalize() {
         throw err;
       }
       files.forEach(function(file){
+
         console.log(file);
-        //* Repeated code -> solved
+
         let contentArray = readFile(`${sourcePath}/${file}`)
         pageGenerator(contentArray)
       })
@@ -166,7 +167,6 @@ function genPage(texts, title) {
   </body>
   </html>
   `;
-  //console.log(html);
   return html;
 }
 
