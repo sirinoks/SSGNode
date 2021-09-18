@@ -34,7 +34,6 @@ function readFile(file) {
   return {"texts": texts, "title": title};
 }
 
-
 //to remove all previous files
 function deleteFiles (folder) {
   fs.readdirSync(folder, (err, files) => {
@@ -101,6 +100,11 @@ process.argv.forEach(function (val, index, array) {
   }
 });
 
+function pageGenerator(contentArray) {
+    html = genPage(contentArray["texts"], contentArray["title"]);
+    output(html);
+}
+
 function finalize() {
   let texts = "";
   let title = "";
@@ -112,20 +116,18 @@ function finalize() {
         throw err;
       }
       files.forEach(function(file){
-        //* Repeated code
-        
+
+        console.log(file);
+
         let contentArray = readFile(`${sourcePath}/${file}`)
-        html = genPage(contentArray["texts"], contentArray["title"]);
-        output(html);
+        pageGenerator(contentArray)
       })
     })
 
   } else {
-    //* Repeated code
+    //* Repeated code -> solved
     let contentArray = readFile(sourcePath);
-    html = genPage(contentArray["texts"], contentArray["title"]);
-    output(html);
-    
+    pageGenerator(contentArray)
   }
   console.log("Website generated");
 }
@@ -135,7 +137,6 @@ function output(html) {
     if (!fs.existsSync(endPath)) {
       fs.mkdirSync(endPath);
     }
-  
     deleteFiles(endPath);
     generateFile(html);
     genCss(endPath);
@@ -159,13 +160,11 @@ function genPage(texts, title) {
   <link rel="stylesheet" href="./styles.css">
   <title>${title}</title>
   </head>
-
   <body>
   <div class="container">
   ${texts}
   </div>
   </body>
-
   </html>
   `;
   return html;
