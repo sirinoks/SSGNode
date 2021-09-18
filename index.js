@@ -34,7 +34,6 @@ function readFile(file) {
   return {"texts": texts, "title": title};
 }
 
-
 //to remove all previous files
 function deleteFiles (folder) {
   fs.readdirSync(folder, (err, files) => {
@@ -118,18 +117,16 @@ function finalize() {
       }
       files.forEach(function(file){
         console.log(file);
-        //* Repeated code
-        
+        //* Repeated code -> solved
         let contentArray = readFile(`${sourcePath}/${file}`)
         pageGenerator(contentArray)
       })
     })
 
   } else {
-    //* Repeated code
+    //* Repeated code -> solved
     let contentArray = readFile(sourcePath);
     pageGenerator(contentArray)
-    
   }
   console.log("Website generated");
 }
@@ -139,7 +136,6 @@ function output(html) {
     if (!fs.existsSync(endPath)) {
       fs.mkdirSync(endPath);
     }
-  
     deleteFiles(endPath);
     generateFile(html);
     genCss(endPath);
@@ -163,13 +159,11 @@ function genPage(texts, title) {
   <link rel="stylesheet" href="./styles.css">
   <title>${title}</title>
   </head>
-
   <body>
   <div class="container">
   ${texts}
   </div>
   </body>
-
   </html>
   `;
   //console.log(html);
