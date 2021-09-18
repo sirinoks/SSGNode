@@ -2,6 +2,7 @@
 
 const fs = require ('fs')
 const path = require('path')
+const { name, version } = require('../SSGNode/package.json')
 
 let sourcePath = "./Sherlock Holmes Selected Stories/The Adventure of the Six Napoleans.txt"
 let endPath = "./dist"
@@ -57,8 +58,6 @@ function generateFile(html) {
 }
 
 //change consts based on context. Can I take version number from package.json?
-const name = "ssgnode";
-const version = 0.1;
 const defaultFolder = "Sherlock Holmes Selected Stories";
 
 //check if the argument corresponds with anything we can use
