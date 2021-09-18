@@ -112,7 +112,6 @@ function finalize() {
         throw err;
       }
       files.forEach(function(file){
-        console.log(file);
         //* Repeated code
         
         let contentArray = readFile(`${sourcePath}/${file}`)
@@ -169,7 +168,6 @@ function genPage(texts, title) {
 
   </html>
   `;
-  //console.log(html);
   return html;
 }
 
