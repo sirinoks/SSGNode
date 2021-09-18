@@ -101,6 +101,11 @@ process.argv.forEach(function (val, index, array) {
   }
 });
 
+function pageGenerator(contentArray) {
+    html = genPage(contentArray["texts"], contentArray["title"]);
+    output(html);
+}
+
 function finalize() {
   let texts = "";
   let title = "";
@@ -116,16 +121,14 @@ function finalize() {
         //* Repeated code
         
         let contentArray = readFile(`${sourcePath}/${file}`)
-        html = genPage(contentArray["texts"], contentArray["title"]);
-        output(html);
+        pageGenerator(contentArray)
       })
     })
 
   } else {
     //* Repeated code
     let contentArray = readFile(sourcePath);
-    html = genPage(contentArray["texts"], contentArray["title"]);
-    output(html);
+    pageGenerator(contentArray)
     
   }
   console.log("Website generated");
