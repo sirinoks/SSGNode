@@ -1,4 +1,4 @@
-# SSGNode  
+# SSGNode #
 [Watch it work](https://sirinoks.github.io/SSGNode/)  
 **S**tatic  
 **S**ite  
@@ -11,7 +11,7 @@ It also recognizes the first paragraph as a title.
 
 ---
 
-## How to use
+## How to use ##
 You should have a `.txt` file or a folder of such files, or instead "Sherlock Holmes Selected Stories" folder with txt contents present for testing this tool.\
 \
 Make sure to have [node.js](https://nodejs.org/en/download/) installed on your system.\
@@ -30,7 +30,7 @@ Run in your console
 node index.js
 ```
 ***
-### Arguments
+### Arguments ###
 You can specify additional options through arguments like so:
 ```
 node index.js -argument --argument input
@@ -60,3 +60,13 @@ node index.js -i cats
 If you wish so, you also can:
 
 `-hi` or `--hello`
+
+### A New Feature added: ###
+
+This static site generator now reads the md file and converts them to html files with limited styling.
+
+Example of usage:
+# SSG Node # 
+will be converted into the html format for heading tag.
+```<h1> SSG Node </h1>```
+
