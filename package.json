@@ -16,10 +16,5 @@
   "bugs": {
     "url": "https://github.com/sirinoks/SSGNode/issues"
   },
-  "homepage": "https://github.com/sirinoks/SSGNode#readme",
-  "dependencies": {
-    "fs": "0.0.1-security",
-    "module": "^1.2.5",
-    "utils": "^0.3.1"
-  }
+  "homepage": "https://github.com/sirinoks/SSGNode#readme"
 }
