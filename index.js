@@ -8,9 +8,23 @@ let sourcePath = "./Sherlock Holmes Selected Stories/The Adventure of the Six Na
 let endPath = "./dist"
 
 function readFile(file) {
+  if(file.match(".*(\.txt|\.md)$")){
   //read the file
   const fullText = String(fs.readFileSync(file, 'utf8'));
-
+    //condition to check if file has extension of md.
+    if(file.match(".*(\.md)$")){
+      //replacing the strings globally according to features.
+      fullText = fullText.replace(/_ /g, "<i>") 
+      fullText = fullText.replace(/ _/g, "</i>")
+      fullText = fullText.replace(/__ /g, "<b>")
+      fullText = fullText.replace(/ __/g, "</b>")
+      fullText = fullText.replace(/### /g, "<h3>")
+      fullText = fullText.replace(/ ###/g, "</h3>")
+      fullText = fullText.replace(/## /g, "<h2>")
+      fullText = fullText.replace(/ ##/g, "</h2>")
+      fullText = fullText.replace(/# /g, "<h1>")
+      fullText = fullText.replace(/ #/g, "</h1>")
+    }
   //future functionality of choosing the element you want to use
   let element = "p";
 
@@ -32,6 +46,7 @@ function readFile(file) {
   //put them all into a single string, every paragraph starts from a new line
   texts = htmlParagraphsArray.join('\n');
   return {"texts": texts, "title": title};
+}
 }
 
 //to remove all previous files
@@ -116,11 +131,11 @@ function finalize() {
         throw err;
       }
       files.forEach(function(file){
-
-        console.log(file);
-
-        let contentArray = readFile(`${sourcePath}/${file}`)
-        pageGenerator(contentArray)
+        if(file.match(".*(\.txt|\.md)$")){
+          console.log(file);
+          let contentArray = readFile(`${sourcePath}/${file}`)
+          pageGenerator(contentArray)
+        }
       })
     })
 
