@@ -8,7 +8,7 @@ let endPath = "./dist"
 function readFile(file) {
   if(file.match(".*(\.txt|\.md)$")){
   //read the file
-  const fullText = String(fs.readFileSync(file, 'utf8'));
+  let fullText = String(fs.readFileSync(file, 'utf8'));
     //condition to check if file has extension of md.
     if(file.match(".*(\.md)$")){
       //replacing the strings globally according to features.
