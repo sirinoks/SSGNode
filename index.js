@@ -1,5 +1,3 @@
-//I know there are a bunch of things that can be improved on, but I don't know how exactly. I will mark those with a *
-
 const fs = require ('fs')
 const path = require('path')
 const { name, version } = require('../SSGNode/package.json')
@@ -133,6 +131,8 @@ function finalize() {
       files.forEach(function(file){
         if(file.match(".*(\.txt|\.md)$")){
           console.log(file);
+          console.log("File mathched:");
+          console.log(file);
           let contentArray = readFile(`${sourcePath}/${file}`)
           pageGenerator(contentArray)
         }
@@ -140,7 +140,6 @@ function finalize() {
     })
 
   } else {
-    //* Repeated code -> solved
     let contentArray = readFile(sourcePath);
     pageGenerator(contentArray)
   }
@@ -164,7 +163,6 @@ function genCss(dir) {
 }
 
 function genPage(texts, title) {
-  console.log(title);
   const html = `
   <!DOCTYPE html>
   <html>

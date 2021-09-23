@@ -1,9 +1,9 @@
 # SSGNode #
 [Watch it work](https://sirinoks.github.io/SSGNode/)  
-**S**tatic\
-**S**ite\
-**G**enerator\
-\
+**S**tatic  
+**S**ite  
+**G**enerator  
+  
 This tool allows you to generate web pages from text files.\
 You can specify a file/folder to generate into valid html pages. They will appear in `./dist*.`
 You can also change the `styles.css` to fit your preferences, it will get copied over to `./dist` and will be applied to all webpages there.\
@@ -16,26 +16,25 @@ You should have a `.txt` file or a folder of such files, or instead "Sherlock Ho
 \
 Make sure to have [node.js](https://nodejs.org/en/download/) installed on your system.\
 Then, in the repository run
+```
+npm install
+```
 
-> npm install
-
-\
 If you ever get an error of a missing node module, you can always look at its name (it will have a message *Error: Cannot find module `module`*) and run
+```
+npm install **module**
+```
 
-> npm install **module**
-
-\
 Run in your console
-
-> node index.js
-
+```
+node index.js
+```
 ***
 ### Arguments ###
 You can specify additional options through arguments like so:
-
-> node index.js -argument --argument input
-
-\
+```
+node index.js -argument --argument input
+```
 To get quick instructions on the arguments do:
 
  `-h` or `--help`
@@ -52,9 +51,9 @@ To change the default directory from where the files would be read or the specif
 
 \
 Example of usage:
-
-> node index.js -i cats
-
+```
+node index.js -i cats
+```
 *Please note you shouldn't add ./ in the beginning, since the app will do it for you*
 \
 
