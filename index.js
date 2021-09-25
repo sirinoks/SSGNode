@@ -56,7 +56,7 @@ function deleteFiles (folder) {
 }
 
 function generateFile(html) {
-  mkFolderExist(endPath);
+  mkExist(endPath);
 
   fs.writeFileSync(`${endPath}/output.html`, html, function(err) {
     if(err) {
@@ -143,28 +143,29 @@ function finalize() {
   console.log("Website generated");
 }
 
-//if folder doesn't exist, create it
-function mkFolderExist(path) {
-  if (!fs.existsSync(path))
-    fs.mkdirSync(path);
+//if folder/file doesn't exist, create it
+function mkExist(toCreate, ifFolder=true) {
+  if(!fs.existsSync(toCreate)) {
+    if(ifFolder) {
+      fs.mkdirSync(toCreate);
+    } else {
+      fs.writeFileSync(toCreate, "utf8");
+    }
+  }
 }
 
 function output(html) {
-    mkFolderExist(endPath);
-    deleteFiles(endPath);
-    generateFile(html);
-    genCss(endPath);
+  mkExist(endPath);
+  deleteFiles(endPath);
+  generateFile(html);
+  genCss(endPath);
 }
 
 function genCss(dir) {
-  mkFolderExist(dir);
+  mkExist(dir);
+  mkExist(`${dir}/styles.css`, false);
 
-  console.log(`${fs.existsSync(dir+"/styles.css")} - files`);
-  console.log(`${fs.existsSync(dir)} - css`);
-
-  fs.copyFileSync("styles.css", `${dir}/styles.css`, (err)=>{
-    if (err) throw err;
-  })
+  fs.copyFileSync("./styles.css", `${dir}/styles.css`);
 }
 
 function genPage(texts, title) {
