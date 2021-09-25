@@ -49,24 +49,21 @@ function readFile(file) {
 
 //to remove all previous files
 function deleteFiles (folder) {
-  fs.readdirSync(folder, (err, files) => {
+  fs.rmSync(folder, {recursive:true}, err => {
     if (err) throw err;
-  
-    for (const file of files) {
-      fs.unlinkSync(path.join(folder, file), err => {
-        if (err) throw err;
-      });
-    }
   });
+
 }
 
 function generateFile(html) {
+  mkExist(endPath);
+
   fs.writeFileSync(`${endPath}/output.html`, html, function(err) {
     if(err) {
         return console.log(err);
     }
     console.log("web page generated");
-  }); 
+  });
 }
 
 //change consts based on context. Can I take version number from package.json?
@@ -146,20 +143,29 @@ function finalize() {
   console.log("Website generated");
 }
 
-function output(html) {
-    //if folder doesn't exist, create it
-    if (!fs.existsSync(endPath)) {
-      fs.mkdirSync(endPath);
+//if folder/file doesn't exist, create it
+function mkExist(toCreate, ifFolder=true) {
+  if(!fs.existsSync(toCreate)) {
+    if(ifFolder) {
+      fs.mkdirSync(toCreate);
+    } else {
+      fs.writeFileSync(toCreate, "utf8");
     }
-    deleteFiles(endPath);
-    generateFile(html);
-    genCss(endPath);
+  }
+}
+
+function output(html) {
+  mkExist(endPath);
+  deleteFiles(endPath);
+  generateFile(html);
+  genCss(endPath);
 }
 
 function genCss(dir) {
-  fs.copyFileSync("styles.css", `${dir}/styles.css`, (err)=>{
-    if (err) throw err;
-  })
+  mkExist(dir);
+  mkExist(`${dir}/styles.css`, false);
+
+  fs.copyFileSync("./styles.css", `${dir}/styles.css`);
 }
 
 function genPage(texts, title) {
