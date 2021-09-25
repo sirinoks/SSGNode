@@ -1,0 +1,31 @@
+* {
+    margin: 0;
+    padding: 0;
+    color: white;
+    font-family: 'Lato', sans-serif;
+    border: none;
+}
+
+body {
+    background-color: rgb(50, 50, 50);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 60vw;
+    margin: auto;
+    background-color: rgb(30, 30, 30);
+    padding: 1%;
+    margin-top: 2%;
+}
+
+p {
+    margin: 1%;
+}
+
+h1 {
+    margin: auto;
+    padding: 1%;
+    color:rgba(150, 210, 220)
+}
