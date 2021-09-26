@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/sirinoks/SSGNode/issues"
   },
-  "homepage": "https://github.com/sirinoks/SSGNode#readme"
+  "homepage": "https://github.com/sirinoks/SSGNode#readme",
+  "engines": {
+    "node": ">=14.14.0"
+  }
 }
