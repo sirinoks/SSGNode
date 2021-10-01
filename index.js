@@ -43,6 +43,7 @@ function run() {
     }
   }
   console.log("Website generated");
+  exit(0);
 }
 
 function readFile(file) {
