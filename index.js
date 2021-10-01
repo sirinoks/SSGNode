@@ -63,6 +63,8 @@ function readFile(file) {
         fullText = fullText.replace(/ ##/g, "</h2>")
         fullText = fullText.replace(/# /g, "<h1>")
         fullText = fullText.replace(/ #/g, "</h1>")
+
+        fullText = fullText.replace(/---/g, "<hr>")
       }
     //future functionality of choosing the element you want to use
     let element = "p";
