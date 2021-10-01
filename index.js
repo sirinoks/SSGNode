@@ -5,6 +5,7 @@ const { name, version } = require('../SSGNode/package.json')
 
 let sourcePath = "./Sherlock Holmes Selected Stories/The Adventure of the Six Napoleans.txt"
 let endPath = "./dist"
+let lang = "en"
 
 function run() {
   let texts = "";
@@ -100,7 +101,7 @@ function pageGenerator(contentArray) {
 function genPage(texts, title) {
   const html = `
   <!DOCTYPE html>
-  <html>
+  <html lang="${lang}">
   <head>
   <style>
   @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
@@ -190,6 +191,8 @@ const defaultFolder = "Sherlock Holmes Selected Stories";
 
 //check if the argument corresponds with anything we can use
 let pathchanged = false;
+let langchanged = false;
+
 process.argv.forEach(function (val, index, array) {
   //if path isn't the default one, change it for this next value
   if(pathchanged){
@@ -197,6 +200,14 @@ process.argv.forEach(function (val, index, array) {
       //means this might be the directory
       sourcePath = val;
       console.log(`Path is now ${val}`);
+    }
+    
+  }
+  if(langchanged){
+    if(!val.match("^-")) {
+      //means this might be the lang
+      lang = val;
+      console.log(`Lang is now ${val}`);
     }
   }
 
@@ -225,6 +236,10 @@ process.argv.forEach(function (val, index, array) {
     case "--input":
     case "-i":      
       pathchanged=true;
+      break;
+    case "--lang":
+    case "-l":
+      langchanged = true;
       break;
   }
 });
