@@ -45,6 +45,13 @@ To check the version of the app:
 `-v` or `--version`
 
 \
+
+To change language of the page (it's set as `en` by default. It will be put in as an attribute to `<html>`, such as `<html lang="en">` ):
+
+`-l` or `--lang`
+
+\
+
 To change the default directory from where the files would be read or the specific file:
 
 `-i` or `--input` 
@@ -54,6 +61,7 @@ Example of usage:
 ```
 node index.js -i cats
 ```
+Will convert everything from folder `cats` to html pages.
 *Please note you shouldn't add ./ in the beginning, since the app will do it for you*
 \
 
