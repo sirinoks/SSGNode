@@ -187,6 +187,9 @@ function configReader(){
     if(configJSON.input !== "" && configJSON.input !== undefined){
       sourcePath = configJSON.input;
     }
+    if(configJSON.output !== "" && configJSON.output !== undefined){
+      endPath = configJSON.output;
+    }
   } catch (error) {
     console.log(`Fail reading file: ${error}`);
   }
@@ -235,7 +238,7 @@ process.argv.forEach(function (val, index, array) {
     if(!val.match("^-")) {
       //means this might be the config
       config = val;
-      console.log(`Config file is now ${config}`)
+      console.log(`Config file is now ${config}`);
       configReader();
     }
   }
