@@ -184,14 +184,19 @@ function configReader(){
     if(configJSON.lang !== "" && configJSON.lang !== undefined){
       lang = configJSON.lang;
     }
-    if(configJSON.input !== "" && configJSON.input !== undefined){
+
+    //validate the input for a file/folder else throws an error and close to program.
+    if(fs.lstatSync(configJSON.input).isDirectory() || fs.lstatSync(configJSON.input).isFile()){
       sourcePath = configJSON.input;
     }
+    
+    //Output folder else default to ./dist
     if(configJSON.output !== "" && configJSON.output !== undefined){
       endPath = configJSON.output;
     }
   } catch (error) {
-    console.log(`Fail reading file: ${error}`);
+    console.log(`ERROR: ${error}`);
+    exit(-1);
   }
 }
 
