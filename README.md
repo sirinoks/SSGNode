@@ -56,6 +56,10 @@ To change the default directory from where the files would be read or the specif
 
 `-i` or `--input` 
 
+To specify a config file to read from:
+
+`-c` or `--config` 
+
 \
 Example of usage:
 ```
@@ -83,3 +87,6 @@ Example of usage:
 # SSG Node # 
 will be converted into the html format for heading tag.
 ```<h1> SSG Node </h1>```
+
+## Config file support: ##
+You can now specify
