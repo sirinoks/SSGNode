@@ -6,6 +6,7 @@ const { name, version } = require('../SSGNode/package.json')
 let sourcePath = "./Sherlock Holmes Selected Stories/The Adventure of the Six Napoleans.txt"
 let endPath = "./dist"
 let lang = "en"
+let config = ""
 
 function run() {
   let texts = "";
@@ -176,6 +177,29 @@ function generateFile(html) {
   }
 }
 
+function configReader(){
+  try {
+    //parse the file and check for the arguments.
+    const configJSON = JSON.parse(fs.readFileSync(config, 'utf8'));
+    if(configJSON.lang !== "" && configJSON.lang !== undefined){
+      lang = configJSON.lang;
+    }
+
+    //validate the input for a file/folder else throws an error and close to program.
+    if(fs.lstatSync(configJSON.input).isDirectory() || fs.lstatSync(configJSON.input).isFile()){
+      sourcePath = configJSON.input;
+    }
+    
+    //Output folder else default to ./dist
+    if(configJSON.output !== "" && configJSON.output !== undefined){
+      endPath = configJSON.output;
+    }
+  } catch (error) {
+    console.log(`ERROR: ${error}`);
+    exit(-1);
+  }
+}
+
 function genCss(dir) {
   mkExist(dir);
   mkExist(`${dir}/styles.css`, false);
@@ -195,6 +219,7 @@ const defaultFolder = "Sherlock Holmes Selected Stories";
 //check if the argument corresponds with anything we can use
 let pathchanged = false;
 let langchanged = false;
+let configchanged = false;
 
 process.argv.forEach(function (val, index, array) {
   //if path isn't the default one, change it for this next value
@@ -211,6 +236,15 @@ process.argv.forEach(function (val, index, array) {
       //means this might be the lang
       lang = val;
       console.log(`Lang is now ${val}`);
+    }
+  }
+
+  if (configchanged) {
+    if(!val.match("^-")) {
+      //means this might be the config
+      config = val;
+      console.log(`Config file is now ${config}`);
+      configReader();
     }
   }
 
@@ -243,6 +277,10 @@ process.argv.forEach(function (val, index, array) {
     case "--lang":
     case "-l":
       langchanged = true;
+      break;
+    case "--config":
+    case "-c":
+      configchanged = true;
       break;
   }
 });
