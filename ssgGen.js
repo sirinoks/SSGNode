@@ -1,7 +1,5 @@
 const fs = require('fs')
-const path = require('path')
 const { exit } = require('process')
-const { name, version } = require('../SSGNode/package.json')
 const localUtils = require("./utils")
 
 let endPath = "./dist"
@@ -191,8 +189,5 @@ function genCss(dir) {
         exit(-1);
     }
 }
-
-//TODO: Remove default path, make a config
-const defaultFolder = "Sherlock Holmes Selected Stories";
 
 module.exports = run;

@@ -1,16 +1,14 @@
 //Handling arguments
 const run = require("./ssgGen");
 const yargs = require('yargs/yargs')(process.argv.slice(2));
+const { name, version } = require('../SSGNode/package.json')
 
-const argv = yargs.usage('Welcome to SSGNode.')
+const argv = yargs.usage(`Welcome to ${name}.`)
   .usage("Specify a .txt or .md file or folder to convert into an HTML page.")
   .example("node index.js -i source")
+  .alias("v", "version")
+  .version(version)
   .options({
-    v: {
-      alias: "version",
-      desc: "Show current version of SSGNode",
-      type: "string",
-    },
     i: {
       alias: "input",
       desc: "Choose a source to produce HTML page from. Folder or file.",
@@ -33,6 +31,5 @@ const argv = yargs.usage('Welcome to SSGNode.')
 if (!(argv.input || argv.config)) {
   console.log("No input path chosen!")
   exit(1);
-}
-
-run(argv.input, argv.lang, argv.config);
+} else
+  run(argv.input, argv.lang, argv.config);
