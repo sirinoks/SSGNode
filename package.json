@@ -19,5 +19,12 @@
   "homepage": "https://github.com/sirinoks/SSGNode#readme",
   "engines": {
     "node": ">=14.14.0"
+  },
+  "dependencies": {
+    "yargs": "^17.2.1"
+  },
+  "devDependencies": {
+    "@types/yargs": "^17.0.4",
+    "webpack-cli": "^4.9.1"
   }
 }
