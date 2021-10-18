@@ -67,7 +67,7 @@ node index.js -i cats
 ```
 Will convert everything from folder `cats` to html pages.
 *Please note you shouldn't add ./ in the beginning, since the app will do it for you*
-\
+
 
 If you wish so, you also can:
 
