@@ -9,13 +9,6 @@ let lang = "en"
 let config = ""
 
 function run(sourcePath, lang, configPath) {
-    let texts = "";
-    let title = "";
-    let html = "";
-    console.log('\x1b[31m%s\x1b[0m', config);
-    console.log('\x1b[31m%s\x1b[0m', sourcePath);
-    console.log('\x1b[31m%s\x1b[0m', lang);
-
     let configs;
     if (configPath)
         configs = configReader(configPath);
@@ -27,9 +20,6 @@ function run(sourcePath, lang, configPath) {
         if (configs.output)
             endPath = configs.output;
     }
-    console.log('\x1b[31m%s\x1b[0m', configPath);
-    console.log('\x1b[31m%s\x1b[0m', sourcePath);
-    console.log('\x1b[31m%s\x1b[0m', lang);
 
     if (fs.lstatSync(sourcePath).isDirectory()) {
         try {
@@ -199,25 +189,7 @@ function generateFile(html) {
 function configReader(config) {
     try {
         //parse the file and check for the arguments.
-        console.log('\x1b[32m%s\x1b[0m', config);
         const configJSON = JSON.parse(fs.readFileSync(config, 'utf8'));
-        if (configJSON.lang) {
-            lang = configJSON.lang;
-        }
-        console.log('\x1b[32m%s\x1b[0m', configJSON);
-
-        console.log('\x1b[32m%s\x1b[0m', configJSON.lang);
-
-
-        //validate the input for a file/folder else throws an error and close to program.
-        if (fs.lstatSync(configJSON.input).isDirectory() || fs.lstatSync(configJSON.input).isFile()) {
-            sourcePath = configJSON.input;
-        }
-
-        //Output folder else default to ./dist
-        if (configJSON.output !== "" && configJSON.output !== undefined) {
-            endPath = configJSON.output;
-        }
 
         return configJSON;
     } catch (error) {
