@@ -1,7 +1,8 @@
 //Handling arguments
 const run = require("./ssgGen");
-const yargs = require("yargs")
-  .usage("$0 <cmd> [args]")
+const yargs = require("yargs/yargs")
+  .usage("bla bla")
+  .example("node index.js -i source")
   .options({
     v: {
       alias: "version",

@@ -218,3 +218,5 @@ function genCss(dir) {
 
 //TODO: Remove default path, make a config
 const defaultFolder = "Sherlock Holmes Selected Stories";
+
+module.exports = run;
