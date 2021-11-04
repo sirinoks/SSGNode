@@ -1,4 +1,7 @@
 ## Install things! ##
+
+### Node JS ###
+
 Make sure to have [node.js](https://nodejs.org/en/download/) installed on your system.  
 Then, in the repository run
 ```
@@ -15,5 +18,8 @@ Run in your console
 node index.js
 ```
 ***
+
+### Prettier ###
+Install [prettier] (https://prettier.io/docs/en/install.html)
 
 ## Feel free to contribute! ##
