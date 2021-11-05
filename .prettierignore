@@ -1,3 +1,7 @@
 node_modules
 README.md
 CONTRIBUTING.md
+dist
+docs*
+folder
+*.txt

@@ -1,5 +1,5 @@
-const fs = require('fs')
-const { exit } = require('process')
+const fs = require("fs");
+const { exit } = require("process");
 
 //if folder/file doesn't exist, create it
 function mkExist(toCreate, ifFolder = true) {
@@ -12,7 +12,11 @@ function mkExist(toCreate, ifFolder = true) {
             }
         }
     } catch (err) {
-        console.log(`Error when creating a ${ifFolder ? "folder" : "file"} ${toCreate}.`);
+        console.log(
+            `Error when creating a ${
+                ifFolder ? "folder" : "file"
+            } ${toCreate}.`,
+        );
         console.log(err);
         exit(-1);
     }

@@ -1,5 +1,5 @@
 {
-  "input": "./Sherlock Holmes Selected Stories/Silver Blaze.txt",
-  "output": "folder",
-  "lang": "fr"
+    "input": "./Sherlock Holmes Selected Stories/Silver Blaze.txt",
+    "output": "folder",
+    "lang": "fr"
 }

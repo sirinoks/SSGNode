@@ -1,20 +1,16 @@
-const fs = require('fs')
-const { exit } = require('process')
-const localUtils = require("./utils")
+const fs = require("fs");
+const { exit } = require("process");
+const localUtils = require("./utils");
 
-let endPath = "./dist"
+let endPath = "./dist";
 
 function run(sourcePath, lang, configPath) {
     let configs;
-    if (configPath)
-        configs = configReader(configPath);
+    if (configPath) configs = configReader(configPath);
     if (configs) {
-        if (configs.input)
-            sourcePath = configs.input;
-        if (configs.lang)
-            lang = configs.lang;
-        if (configs.output)
-            endPath = configs.output;
+        if (configs.input) sourcePath = configs.input;
+        if (configs.lang) lang = configs.lang;
+        if (configs.output) endPath = configs.output;
     }
 
     if (fs.lstatSync(sourcePath).isDirectory()) {
@@ -24,15 +20,15 @@ function run(sourcePath, lang, configPath) {
                     throw err;
                 }
                 files.forEach(function (file) {
-                    if (file.match(".*(\.txt|\.md)$")) {
+                    if (file.match(".*(.txt|.md)$")) {
                         console.log(file);
                         console.log("File mathched:");
                         console.log(file);
-                        let contentArray = readFile(`${sourcePath}/${file}`)
-                        pageGenerator(contentArray, lang)
+                        let contentArray = readFile(`${sourcePath}/${file}`);
+                        pageGenerator(contentArray, lang);
                     }
-                })
-            })
+                });
+            });
         } catch (err) {
             console.log(`Error when reading a directory in ${sourcePath}.`);
             console.log(err);
@@ -41,7 +37,7 @@ function run(sourcePath, lang, configPath) {
     } else {
         try {
             let contentArray = readFile(sourcePath);
-            pageGenerator(contentArray, lang)
+            pageGenerator(contentArray, lang);
         } catch (err) {
             console.log(`Error when reading a file in ${sourcePath}.`);
             console.log(err);
@@ -53,24 +49,24 @@ function run(sourcePath, lang, configPath) {
 }
 
 function readFile(file) {
-    if (file.match(".*(\.txt|\.md)$")) {
+    if (file.match(".*(.txt|.md)$")) {
         //read the file
-        let fullText = fs.readFileSync(file, 'utf8');
+        let fullText = fs.readFileSync(file, "utf8");
         //formatting if it's an .md file
-        if (file.match(".*(\.md)$")) {
+        if (file.match(".*(.md)$")) {
             //replacing strings
-            fullText = fullText.replace(/_ /g, "<i>")
-            fullText = fullText.replace(/ _/g, "</i>")
-            fullText = fullText.replace(/__ /g, "<b>")
-            fullText = fullText.replace(/ __/g, "</b>")
-            fullText = fullText.replace(/### /g, "<h3>")
-            fullText = fullText.replace(/ ###/g, "</h3>")
-            fullText = fullText.replace(/## /g, "<h2>")
-            fullText = fullText.replace(/ ##/g, "</h2>")
-            fullText = fullText.replace(/# /g, "<h1>")
-            fullText = fullText.replace(/ #/g, "</h1>")
+            fullText = fullText.replace(/_ /g, "<i>");
+            fullText = fullText.replace(/ _/g, "</i>");
+            fullText = fullText.replace(/__ /g, "<b>");
+            fullText = fullText.replace(/ __/g, "</b>");
+            fullText = fullText.replace(/### /g, "<h3>");
+            fullText = fullText.replace(/ ###/g, "</h3>");
+            fullText = fullText.replace(/## /g, "<h2>");
+            fullText = fullText.replace(/ ##/g, "</h2>");
+            fullText = fullText.replace(/# /g, "<h1>");
+            fullText = fullText.replace(/ #/g, "</h1>");
 
-            fullText = fullText.replace(/---/g, "<hr>")
+            fullText = fullText.replace(/---/g, "<hr>");
         }
         //future functionality of choosing the element you want to use
         let element = "p";
@@ -83,16 +79,19 @@ function readFile(file) {
 
         //put them all into an array
         for (let i = 0; i < paragraphs.length; i++) {
-            if (i == 0)//only the first paragraph is the title
+            if (i == 0)
+                //only the first paragraph is the title
                 htmlParagraphsArray.push(`<h1>${title}</h1>`);
             else {
-                htmlParagraphsArray.push(`<${element}>${paragraphs[i]}</${element}>`);
+                htmlParagraphsArray.push(
+                    `<${element}>${paragraphs[i]}</${element}>`,
+                );
             }
         }
 
         //put them all into a single string, every paragraph starts from a new line
-        texts = htmlParagraphsArray.join('\n');
-        return { "texts": texts, "title": title };
+        texts = htmlParagraphsArray.join("\n");
+        return { texts: texts, title: title };
     }
 }
 
@@ -100,7 +99,9 @@ function pageGenerator(contentArray, lang) {
     try {
         html = genPage(contentArray["texts"], contentArray["title"], lang);
     } catch (err) {
-        console.log(`Error when generating an html file for ${contentArray["title"]}.`);
+        console.log(
+            `Error when generating an html file for ${contentArray["title"]}.`,
+        );
         console.log(err);
         exit(-1);
     }
@@ -138,7 +139,7 @@ function output(html) {
 //to remove all previous files
 function deleteFiles(folder) {
     try {
-        fs.rmSync(folder, { recursive: true }, err => {
+        fs.rmSync(folder, { recursive: true }, (err) => {
             if (err) throw { err };
         });
     } catch (err) {
@@ -168,7 +169,7 @@ function generateFile(html) {
 function configReader(config) {
     try {
         //parse the file and check for the arguments.
-        const configJSON = JSON.parse(fs.readFileSync(config, 'utf8'));
+        const configJSON = JSON.parse(fs.readFileSync(config, "utf8"));
 
         return configJSON;
     } catch (error) {

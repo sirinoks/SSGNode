@@ -1,31 +1,31 @@
 {
-  "name": "ssgnode",
-  "version": "0.0.1",
-  "description": "Static Site Generator in Node js",
-  "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/sirinoks/SSGNode.git"
-  },
-  "keywords": [
-    "ssg",
-    "nodejs"
-  ],
-  "author": "Sirinoks",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/sirinoks/SSGNode/issues"
-  },
-  "homepage": "https://github.com/sirinoks/SSGNode#readme",
-  "engines": {
-    "node": ">=14.14.0"
-  },
-  "dependencies": {
-    "yargs": "^17.2.1"
-  },
-  "devDependencies": {
-    "@types/yargs": "^17.0.4",
-    "prettier": "2.4.1",
-    "webpack-cli": "^4.9.1"
-  }
+    "name": "ssgnode",
+    "version": "0.0.1",
+    "description": "Static Site Generator in Node js",
+    "main": "index.js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/sirinoks/SSGNode.git"
+    },
+    "keywords": [
+        "ssg",
+        "nodejs"
+    ],
+    "author": "Sirinoks",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/sirinoks/SSGNode/issues"
+    },
+    "homepage": "https://github.com/sirinoks/SSGNode#readme",
+    "engines": {
+        "node": ">=14.14.0"
+    },
+    "dependencies": {
+        "yargs": "^17.2.1"
+    },
+    "devDependencies": {
+        "@types/yargs": "^17.0.4",
+        "prettier": "2.4.1",
+        "webpack-cli": "^4.9.1"
+    }
 }
