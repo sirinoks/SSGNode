@@ -26,4 +26,20 @@ To quickly format the project, run
 npx prettier --write .
 ```
 
+### ESLint ###
+Install [ESLint] (https://eslint.org/docs/user-guide/getting-started)
+It will help you to find errors, inconsistencies.
+Run
+```
+npm run lint
+```
+To format according to the project style
+
+### VSCode integration ###
+`.vscode/settings.json` is configured to use prettier as a formatter on saving the project.
+VSCode addons **prettier** and **eslint** can be installed to have it underline problems with your format. Just search those names in **Extensions**
+You don't have to have them, you can just use the command line instead. (I know *some* people have problems with prettier extension...)
+
 ## Feel free to contribute! ##
+Please communicate goals of your contributions, or document your commits to make it easier to review.
+Use the above tools before doing a PR to have consistent code style.
