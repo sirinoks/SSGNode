@@ -21,5 +21,9 @@ node index.js
 
 ### Prettier ###
 Install [prettier] (https://prettier.io/docs/en/install.html)
+To quickly format the project, run
+```
+npx prettier --write .
+```
 
 ## Feel free to contribute! ##
