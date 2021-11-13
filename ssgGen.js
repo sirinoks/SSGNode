@@ -192,4 +192,4 @@ function genCss(dir) {
 	}
 }
 
-module.exports = run;
+module.exports = run, genPage;

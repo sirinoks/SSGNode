@@ -1,7 +1,4 @@
-const { describe } = require("@jest/types/node_modules/@types/yargs");
-const { test } = require("jest-circus");
 const { ssgGen } = require ("./ssgGen.js");
-
 /*
 function genPage(texts, title, lang) {
 	const html = `
@@ -35,9 +32,7 @@ describe("genPage", ()=>{
 
         expect(data.texts).toBe(texts);
         expect(data.title).toBe(title);
-        expect(data.lang).toBe(lang);
-
-        
+        expect(data.lang).toBe(lang); 
     }
 
     function checkGenPageResult(texts, title, lang, result) {
@@ -60,11 +55,8 @@ describe("genPage", ()=>{
             </html>
             `;
 
-
-
         expect(result).toBe(correct);
     }
-
 
     test("should be able to put data into html ", ()=>{
         let data = {
@@ -73,14 +65,19 @@ describe("genPage", ()=>{
             lang: "br"
         }
 
-        const result = ssgGen.genPage(data.texts, data.title, data.lang);
-
-        checkGenPage(data, data.texts, data.title, data.lang, result);
+        checkGenPageArgs(data, data.texts, data.title, data.lang);
     });
 
     test("should be able to produce valid html", ()=>{
+        let data = {
+            texts: "<p>Sample text</p><p>Another paragraph</p>",
+            title: "Sample stuff!",
+            lang: "br"
+        }
         
-    });
 
+        const result = ssgGen.genPage(data.texts, data.title, data.lang);
+        checkGenPageResult(data.texts, data.title, data.lang, result);
+    });
 
 })
