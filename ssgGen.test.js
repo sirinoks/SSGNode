@@ -1,26 +1,4 @@
 const ssgGen = require ("./ssgGen");
-/*
-function genPage(texts, title, lang) {
-	const html = `
-  <!DOCTYPE html>
-  <html lang="${lang}">
-  <head>
-  <style>
-  @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
-  </style>
-  <link rel="stylesheet" href="./styles.css">
-  <title>${title}</title>
-  </head>
-  <body>
-  <div class="container">
-  ${texts}
-  </div>
-  </body>
-  </html>
-  `;
-	return html;
-}
-*/
 
 describe("genPage", ()=>{
     function checkGenPageArgs(data, texts, title, lang) {
@@ -56,3 +34,4 @@ describe("genPage", ()=>{
         checkGenPageResult(data.texts, data.title, data.lang, result);
     });
 })
+
