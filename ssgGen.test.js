@@ -1,4 +1,4 @@
-const { ssgGen } = require ("./ssgGen.js");
+const ssgGen = require ("./ssgGen");
 /*
 function genPage(texts, title, lang) {
 	const html = `
@@ -35,49 +35,24 @@ describe("genPage", ()=>{
         expect(data.lang).toBe(lang); 
     }
 
-    function checkGenPageResult(texts, title, lang, result) {
-        
-        const correct = `
-            <!DOCTYPE html>
-            <html lang="${lang}">
-            <head>
-            <style>
-            @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
-            </style>
-            <link rel="stylesheet" href="./styles.css">
-            <title>${title}</title>
-            </head>
-            <body>
-            <div class="container">
-            ${texts}
-            </div>
-            </body>
-            </html>
-            `;
-
-        expect(result).toBe(correct);
+    function checkGenPageResult(data, texts, title, result) {
+        expect(result).toContain(`${data}`);
+        expect(result).toContain(`${texts}`);
+        expect(result).toContain(`${title}`);
     }
 
-    test("should be able to put data into html ", ()=>{
-        let data = {
-            texts: "<p>Sample text</p><p>Another paragraph</p>",
-            title: "Sample stuff!",
-            lang: "br"
-        }
+    let data = {
+        texts: "<p>Sample text</p><p>Another paragraph</p>",
+        title: "Sample stuff!",
+        lang: "br"
+    }
 
+    test("should be able to pass data", ()=>{
         checkGenPageArgs(data, data.texts, data.title, data.lang);
     });
 
-    test("should be able to produce valid html", ()=>{
-        let data = {
-            texts: "<p>Sample text</p><p>Another paragraph</p>",
-            title: "Sample stuff!",
-            lang: "br"
-        }
-        
-
+    test("should be able to produce html with data", ()=>{
         const result = ssgGen.genPage(data.texts, data.title, data.lang);
         checkGenPageResult(data.texts, data.title, data.lang, result);
     });
-
 })
