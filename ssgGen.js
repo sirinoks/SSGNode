@@ -49,6 +49,7 @@ function run(sourcePath, lang, configPath) {
 }
 
 function readFile(file) {
+	try{
 	if (file.match(".*(.txt|.md)$")) {
 		//read the file
 		let fullText = fs.readFileSync(file, "utf8");
@@ -92,6 +93,9 @@ function readFile(file) {
 		//put them all into a single string, every paragraph starts from a new line
 		let texts = htmlParagraphsArray.join("\n");
 		return { texts: texts, title: title };
+	}
+	} catch (e) {
+		throw `Error in reading file ${file}, ${e}`;
 	}
 }
 
@@ -192,4 +196,8 @@ function genCss(dir) {
 	}
 }
 
-module.exports = run;
+module.exports = {
+	run, 
+	genPage,
+	readFile
+}
