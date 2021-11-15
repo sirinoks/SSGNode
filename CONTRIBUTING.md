@@ -40,6 +40,13 @@ To format according to the project style
 VSCode addons **prettier** and **eslint** can be installed to have it underline problems with your format. Just search those names in **Extensions**
 You don't have to have them, you can just use the command line instead. (I know *some* people have problems with prettier extension...)
 
+### Unit tests ###
+We use [jest] (https://jestjs.io/docs/getting-started) for unit testing. If you see something that is untested, please contribute!
+To run all existing tests, do
+```
+npm test
+```
+
 ## Feel free to contribute! ##
 Please communicate goals of your contributions, or document your commits to make it easier to review.
 Use the above tools before doing a PR to have consistent code style.
