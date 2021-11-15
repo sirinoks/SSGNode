@@ -1,4 +1,7 @@
 const ssgGen = require ("./ssgGen");
+jest.mock("fs");
+const fs = require("fs").promises;
+
 
 describe("genPage", ()=>{
     function checkGenPageArgs(data, texts, title, lang) {
@@ -35,3 +38,19 @@ describe("genPage", ()=>{
     });
 })
 
+
+describe("readFile",  ()=>{
+    const filename = "file";
+    const fileData = "<p>I am a dragon</p><p>Fear me.</p>";
+    console.log("fs:");
+
+    console.log(fs);
+
+    beforeAll(()=>{
+        fs.__setMockFileData(filename, fileData);
+    });
+
+    test("wrong path should throw", ()=>{
+        expect(()=> ssgGen.readFile(null)).toThrow();
+    });
+})
