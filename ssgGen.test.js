@@ -42,10 +42,7 @@ describe("genPage", ()=>{
 describe("readFile",  ()=>{
     const filename = "file";
     const fileData = "<p>I am a dragon</p><p>Fear me.</p>";
-    console.log("fs:");
-
-    console.log(fs);
-
+    //set up the mock file system
     beforeAll(()=>{
         fs.__setMockFileData(filename, fileData);
     });
@@ -53,4 +50,11 @@ describe("readFile",  ()=>{
     test("wrong path should throw", ()=>{
         expect(()=> ssgGen.readFile(null)).toThrow();
     });
+
+    test("reading a file should not error", ()=>{
+        const data = ssgGen.readFile(filename);
+        console.log(data);
+    });
+    
 })
+
