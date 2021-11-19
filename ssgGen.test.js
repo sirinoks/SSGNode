@@ -1,6 +1,6 @@
 const { run, genPage, readFile } = require("./ssgGen");
 jest.mock("fs");
-const fs = require("fs").promises;
+const fs = require("fs");
 
 console.log(run);
 
@@ -40,8 +40,12 @@ describe("genPage", () => {
 });
 
 describe("readFile", () => {
-    const filename = "file";
-    const fileData = "<p>I am a dragon</p><p>Fear me.</p>";
+    const filename = "file.txt";
+    const fileData = `
+    I am a dragon.
+    Fear me.
+    HAHAHA
+    `;
     //set up the mock file system
     beforeAll(() => {
         fs.__setMockFileData(filename, fileData);
