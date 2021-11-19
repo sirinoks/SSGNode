@@ -5,18 +5,16 @@ function __setMockFileData(filename, data) {
     mockFiles[filename] = data;
 }
 
-function readFile(filepath) {
-    const data=mockFiles[filepath];
+function readMock(filepath) {
+    const data = mockFiles[filepath];
 
-    if(data)
-        return Promise.resolve(data);
-    else
-        return Promise.reject(new Error("Unknown filepath"));
+    if (data) return Promise.resolve(data);
+    else return Promise.reject(new Error("Unknown filepath"));
 }
 
 fs.promises = {
     __setMockFileData,
-    readFile
+    readMock,
 };
 
 module.exports = fs;

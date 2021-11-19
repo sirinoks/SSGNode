@@ -1,9 +1,10 @@
-const ssgGen = require ("./ssgGen");
+const { run, genPage, readFile } = require("./ssgGen");
 jest.mock("fs");
 const fs = require("fs").promises;
 
+console.log(run);
 
-describe("genPage", ()=>{
+describe("genPage", () => {
     function checkGenPageArgs(data, texts, title, lang) {
         expect(typeof data).toBe("object");
 
@@ -13,7 +14,7 @@ describe("genPage", ()=>{
 
         expect(data.texts).toBe(texts);
         expect(data.title).toBe(title);
-        expect(data.lang).toBe(lang); 
+        expect(data.lang).toBe(lang);
     }
 
     function checkGenPageResult(data, texts, title, result) {
@@ -25,36 +26,34 @@ describe("genPage", ()=>{
     let data = {
         texts: "<p>Sample text</p><p>Another paragraph</p>",
         title: "Sample stuff!",
-        lang: "br"
-    }
+        lang: "br",
+    };
 
-    test("should be able to pass data", ()=>{
+    test("should be able to pass data", () => {
         checkGenPageArgs(data, data.texts, data.title, data.lang);
     });
 
-    test("should be able to produce html with data", ()=>{
-        const result = ssgGen.genPage(data.texts, data.title, data.lang);
+    test("should be able to produce html with data", () => {
+        const result = genPage(data.texts, data.title, data.lang);
         checkGenPageResult(data.texts, data.title, data.lang, result);
     });
-})
+});
 
-
-describe("readFile",  ()=>{
+describe("readFile", () => {
     const filename = "file";
     const fileData = "<p>I am a dragon</p><p>Fear me.</p>";
     //set up the mock file system
-    beforeAll(()=>{
+    beforeAll(() => {
         fs.__setMockFileData(filename, fileData);
     });
 
-    test("wrong path should throw", ()=>{
-        expect(()=> ssgGen.readFile(null)).toThrow();
+    test("wrong path should throw", () => {
+        expect(() => readFile(null)).toThrow();
     });
 
-    test("reading a file should not error", ()=>{
-        const data = ssgGen.readFile(filename);
+    test("reading a file should not error", () => {
+        const data = readFile(filename);
         console.log(data);
+        expect(data).toEqual(fileData);
     });
-    
-})
-
+});
