@@ -1,6 +1,6 @@
 const fs = jest.createMockFromModule("fs");
 
-const mockFiles = {};
+let mockFiles = {};
 function __setMockFileData(file, data) {
     mockFiles[file] = data;
 }
