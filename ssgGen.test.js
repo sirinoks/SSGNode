@@ -78,16 +78,6 @@ describe("readFile", () => {
 });
 
 describe("pageGenerator", () => {
-    const contentArray = {
-        texts: `<p>This is one paragraph.</p>
-        <p>This is another.</p>`,
-        title: `I am a title!`,
-    };
-
-    test("should be able to generate a normal page", () => {
-        ssgGen.pageGenerator(contentArray, "br");
-    });
-
     test("should throw from bad data", () => {
         expect(() => ssgGen.pageGenerator(null, "br")).toThrow();
     });
