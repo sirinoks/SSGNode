@@ -22,7 +22,7 @@ function run(sourcePath, lang, configPath) {
                 files.forEach(function (file) {
                     if (file.match(".*(.txt|.md)$")) {
                         console.log(file);
-                        console.log("File mathched:");
+                        console.log("File matched:");
                         console.log(file);
                         let contentArray = readFile(`${sourcePath}/${file}`);
                         pageGenerator(contentArray, lang);
@@ -157,7 +157,13 @@ function deleteFiles(folder) {
 }
 
 function isEmpty(path) {
-    return fs.readdirSync(path).length === 0;
+    try {
+        return fs.readdirSync(path).length === 0;
+    } catch (e) {
+        console.log(`Error when checking if there are files in ${path}.`);
+        console.log(e);
+        exit(-1);
+    }
 }
 
 function generateFile(html) {
