@@ -46,24 +46,26 @@ describe("readFile", () => {
     `;
     //set up the mock file system
     beforeAll(() => {
-        //console.log("Data we pass: ");
-
-        //console.log(fileData);
         fs.__setMockFileData(filename, fileData);
     });
 
     test("wrong path should throw", () => {
-        //expect(() => ssgGen.readFile(null)).toThrow();
+        expect(() => ssgGen.readFile(null)).toThrow();
+    });
+});
+
+describe("pageGenerator", () => {
+    const contentArray = {
+        texts: `<p>This is one paragraph.</p>
+        <p>This is another.</p>`,
+        title: `I am a title!`,
+    };
+
+    test("should be able to generate a normal page", () => {
+        ssgGen.pageGenerator(contentArray, "br");
     });
 
-    test("reading a file should not error", () => {
-        console.log("Before function: ");
-
-        const data = fs.readMock(filename);
-
-        console.log(data);
-        const read = ssgGen.readFile(filename);
-        //console.log(data);
-        expect(read).toEqual(fileData);
+    test("should throw from bad data", () => {
+        expect(() => ssgGen.pageGenerator(null, "br")).toThrow();
     });
 });

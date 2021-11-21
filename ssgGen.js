@@ -51,8 +51,6 @@ function run(sourcePath, lang, configPath) {
 function readFile(file) {
     try {
         if (file.match(".*(.txt|.md)$")) {
-            console.log("In match:");
-
             //read the file
             let fullText = fs.readFileSync(file, "utf8");
             //formatting if it's an .md file
@@ -202,4 +200,5 @@ module.exports = {
     run,
     genPage,
     readFile,
+    pageGenerator,
 };
