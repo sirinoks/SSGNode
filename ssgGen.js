@@ -22,7 +22,7 @@ function run(sourcePath, lang, configPath) {
                 files.forEach(function (file) {
                     if (file.match(".*(.txt|.md)$")) {
                         console.log(file);
-                        console.log("File mathched:");
+                        console.log("File matched:");
                         console.log(file);
                         let contentArray = readFile(`${sourcePath}/${file}`);
                         pageGenerator(contentArray, lang);
@@ -200,4 +200,5 @@ module.exports = {
     run,
     genPage,
     readFile,
+    pageGenerator,
 };
