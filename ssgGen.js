@@ -143,15 +143,21 @@ function output(html) {
 
 //to remove all previous files
 function deleteFiles(folder) {
-    try {
-        fs.rmSync(folder, { recursive: true }, (err) => {
-            if (err) throw { err };
-        });
-    } catch (err) {
-        console.log(`Error when deleting files in ${folder}.`);
-        console.log(err);
-        exit(-1);
+    if (!isEmpty(folder)) {
+        try {
+            fs.rmSync(folder, { recursive: true }, (err) => {
+                if (err) throw { err };
+            });
+        } catch (err) {
+            console.log(`Error when deleting files in ${folder}.`);
+            console.log(err);
+            exit(-1);
+        }
     }
+}
+
+function isEmpty(path) {
+    return fs.readdirSync(path).length === 0;
 }
 
 function generateFile(html) {
