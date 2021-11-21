@@ -1,6 +1,6 @@
 const ssgGen = require("./ssgGen");
 jest.mock("fs");
-const fs = require("fs").promises;
+const fs = require("fs");
 
 describe("genPage", () => {
     function checkGenPageArgs(data, texts, title, lang) {
@@ -74,5 +74,11 @@ describe("readFile", () => {
     test("reading a file should not error", () => {
         const data = ssgGen.readFile(filename);
         console.log(data);
+    });
+});
+
+describe("pageGenerator", () => {
+    test("should throw from bad data", () => {
+        expect(() => ssgGen.pageGenerator(null, "br")).toThrow();
     });
 });

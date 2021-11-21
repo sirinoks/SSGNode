@@ -1,22 +1,15 @@
 const fs = jest.createMockFromModule("fs");
 
-const mockFiles = {};
-function __setMockFileData(filename, data) {
-    mockFiles[filename] = data;
+let mockFiles = {};
+function __setMockFileData(file, data) {
+    mockFiles[file] = data;
 }
 
-function readFile(filepath) {
-    const data=mockFiles[filepath];
-
-    if(data)
-        return Promise.resolve(data);
-    else
-        return Promise.reject(new Error("Unknown filepath"));
+function readMock(filepath) {
+    return mockFiles[filepath] || [];
 }
 
-fs.promises = {
-    __setMockFileData,
-    readFile
-};
+fs.__setMockFileData = __setMockFileData;
+fs.readMock = readMock;
 
 module.exports = fs;
