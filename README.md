@@ -87,4 +87,10 @@ will be converted into the html format for heading tag.
 ```<h1> SSG Node </h1>```
 
 ## Config file support: ##
-You can now specify
+You can now specify a config file to automatically run options specified there.  
+It has to be in a JSON format and can take in 3 options:  
+```json
+"input":
+"output":
+"lang":
+```
