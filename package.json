@@ -1,6 +1,6 @@
 {
     "name": "ssgnode",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "description": "Static Site Generator in Node js",
     "main": "index.js",
     "repository": {
